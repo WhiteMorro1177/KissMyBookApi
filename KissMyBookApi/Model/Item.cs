@@ -1,11 +1,14 @@
-﻿using MongoDB.EntityFrameworkCore;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.EntityFrameworkCore;
 
 namespace KissMyBookApi.Model
 {
 	public class Item
 	{
+		[BsonElement("id")]
 		public int Id { get; set; }
-		public string Name { get; set; }
+		public string Title { get; set; }
 		public ItemType Type { get; set; }
 		public string? Description { get; set; }
 		public string Content { get; set; }
@@ -13,10 +16,10 @@ namespace KissMyBookApi.Model
 
 		public Item() { }
 
-		public Item(int id, string name, ItemType type, string? description, string content, float rating)
+		public Item(int id, string title, ItemType type, string? description, string content, float rating)
 		{
 			Id = id;
-			Name = name;
+			Title = title;
 			Type = type;
 			Description = description;
 			Content = content;
